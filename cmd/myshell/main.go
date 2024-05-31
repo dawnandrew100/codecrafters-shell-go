@@ -19,5 +19,5 @@ func main() {
 }
 
 func responseHandler(incoming string) {
-    fmt.Fprint(os.Stdout, strings.TrimRight(incoming, "\n")+": command not found\n")
+    fmt.Errorf("%v: command not found\n", strings.TrimRight(incoming, "\n"))
 }
