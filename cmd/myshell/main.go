@@ -14,10 +14,10 @@ func main() {
 	    // Wait for user input
         input, _ := bufio.NewReader(os.Stdin).ReadString('\n')
     
-        go responseHandler(input)
+        go responseHandler(strings.TrimRight(input,"\n"))
     }
 }
 
 func responseHandler(incoming string) {
-    fmt.Fprint(os.Stdout, strings.TrimRight(incoming, "\n") +": command not found\n")
+    fmt.Fprint(os.Stdout, incoming +": command not found\n")
 }
