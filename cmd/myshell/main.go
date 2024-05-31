@@ -8,8 +8,6 @@ import (
     "slices"
 )
 
-built_ins := []string{"exit 0", "echo", "type"} 
-
 func main() {
     for {
         fmt.Fprint(os.Stdout, "$ ")
@@ -22,6 +20,9 @@ func main() {
 }
 
 func responseHandler(incoming string) {
+
+    built_ins := []string{"exit 0", "echo", "type"} 
+
     switch {
     case incoming == "exit 0":
         os.Exit(0)
