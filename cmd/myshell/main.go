@@ -19,8 +19,8 @@ func main() {
 }
 
 func responseHandler(incoming string) {
-    switch incoming{
-    case "exit 0":
+    switch {
+    case incoming == "exit 0":
         os.Exit(0)
     case strings.HasPrefix(incoming, "echo"):
         message := strings.Trim(incoming, "echo")
