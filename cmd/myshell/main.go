@@ -32,3 +32,11 @@ func responseHandler(incoming string) {
         fmt.Fprint(os.Stdout, incoming +": command not found\n")
     }
 }
+
+func getCmdAndArgs(cmd string) (string, []string) {
+	l := strings.Split(cmd, " ")
+	if len(l) < 2 {
+		return l[0], []string{}
+	}
+	return l[0], l[1:]
+}
