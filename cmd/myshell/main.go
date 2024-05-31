@@ -22,6 +22,10 @@ func responseHandler(incoming string) {
     switch incoming{
     case "exit 0":
         os.Exit(0)
+    case strings.HasPrefix(incoming, "echo"):
+        message := strings.Trim(incoming, "echo")
+        fmt.Fprint(os.Stdout, message+"\n")
+
     default:
         fmt.Fprint(os.Stdout, incoming +": command not found\n")
     }
