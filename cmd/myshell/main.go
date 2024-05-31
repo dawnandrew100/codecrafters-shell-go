@@ -19,12 +19,14 @@ func main() {
 }
 
 func responseHandler(incoming string) {
-    switch {
-    case incoming == "exit 0":
+    cmd, args := getCmdAndArgs(incoming)
+    
+    switch cmd{
+    case "exit 0":
         os.Exit(0)
-    case strings.HasPrefix(incoming, "echo"):
-        message := strings.TrimPrefix(incoming, "echo ")
-        fmt.Fprint(os.Stdout, message+"\n")
+
+    case "echo":
+        fmt.Fprint(os.Stdout, strings.Join(args," "))
 
     default:
         fmt.Fprint(os.Stdout, incoming +": command not found\n")
