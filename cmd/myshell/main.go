@@ -13,8 +13,9 @@ func main() {
 
 	    // Wait for user input
         input, _ := bufio.NewReader(os.Stdin).ReadString('\n')
+    
+        go responseHandler(input)
     }
-    go responseHandler(input)
 }
 
 func responseHandler(incoming string) {
