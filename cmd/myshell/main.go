@@ -21,7 +21,7 @@ func main() {
 
 func responseHandler(incoming string) {
 
-    built_ins := []string{"exit 0", "echo", "type"} 
+    built_ins := []string{"exit", "echo", "type"} 
 
     switch {
     case incoming == "exit 0":
