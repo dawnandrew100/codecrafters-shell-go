@@ -36,6 +36,7 @@ func responseHandler(incoming string) {
             fmt.Fprint(os.Stdout, check+" is a shell builtin\n")
         } else {
             fmt.Fprint(os.Stdout, check+" not found\n"
+        }
 
     default:
         fmt.Fprint(os.Stdout, incoming +": command not found\n")
