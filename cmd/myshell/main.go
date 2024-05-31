@@ -19,5 +19,10 @@ func main() {
 }
 
 func responseHandler(incoming string) {
-    fmt.Fprint(os.Stdout, incoming +": command not found\n")
+    switch incoming{
+    case "exit 0":
+        os.Exit(0)
+    default:
+        fmt.Fprint(os.Stdout, incoming +": command not found\n")
+    }
 }
