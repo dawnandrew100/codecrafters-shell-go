@@ -32,6 +32,7 @@ func responseHandler(incoming string) {
 
     case strings.HasPrefix(incoming, "type"):
         check := strings.TrimPrefix(incoming, "type ")
+        check := strings.TrimSpace(check)
         if slices.Contains(built_ins, "check"){
             fmt.Fprint(os.Stdout, check+" is a shell builtin\n")
         } else {
