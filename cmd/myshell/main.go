@@ -35,7 +35,7 @@ func responseHandler(incoming string) {
         if slices.Contains(built_ins, "check"){
             fmt.Fprint(os.Stdout, check+" is a shell builtin\n")
         } else {
-            fmt.Fprint(os.Stdout, check+" not found\n"
+            fmt.Fprint(os.Stdout, check+" not found\n")
         }
 
     default:
