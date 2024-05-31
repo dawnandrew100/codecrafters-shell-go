@@ -26,7 +26,7 @@ func responseHandler(incoming string) {
 
     switch cmds[0]{
     case "exit":
-        if cmd[1] == 0 {
+        if cmds[1] == 0 {
             os.Exit(0)
         } else { 
             fmt.Fprint(os.Stdout, "Not a valid exit code\n")
