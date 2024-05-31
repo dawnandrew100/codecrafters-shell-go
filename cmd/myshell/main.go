@@ -23,7 +23,7 @@ func responseHandler(incoming string) {
     case incoming == "exit 0":
         os.Exit(0)
     case strings.HasPrefix(incoming, "echo"):
-        message := strings.Trim(incoming, "echo")
+        message := strings.Trim(incoming, "echo ")
         fmt.Fprint(os.Stdout, message+"\n")
 
     default:
