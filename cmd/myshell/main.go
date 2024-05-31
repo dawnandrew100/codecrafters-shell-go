@@ -22,15 +22,21 @@ func main() {
 }
 
 func responseHandler(incoming string) {
-    switch {
-    case incoming == "exit 0":
-        os.Exit(0)
+    cmds := strings.Split(incoming, " ")
 
-    case strings.HasPrefix(incoming, "echo"):
+    switch cmds[0]{
+    case "exit":
+        if cmd[1] == 0 {
+            os.Exit(0)
+        } else { 
+            fmt.Fprint(os.Stdout, "Not a valid exit code\n")
+        }
+
+    case "echo":
         message := strings.TrimPrefix(incoming, "echo ")
         fmt.Fprint(os.Stdout, message+"\n")
 
-    case strings.HasPrefix(incoming, "type"):
+    case "type":
         check := strings.TrimPrefix(incoming, "type ")
         if slices.Contains(built_ins, check){
             fmt.Fprint(os.Stdout, check+" is a shell builtin\n")
