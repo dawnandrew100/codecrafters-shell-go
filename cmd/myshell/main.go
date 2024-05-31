@@ -14,7 +14,7 @@ func main() {
 	    // Wait for user input
         input, _ := bufio.NewReader(os.Stdin).ReadString('\n')
     
-        go responseHandler(strings.TrimRight(input,"\n"))
+        go responseHandler(strings.TrimRight(input,"\r\n"))
     }
 }
 
