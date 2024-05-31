@@ -8,7 +8,7 @@ import (
     "slices"
 )
 
-var built_ins := [...]string{"exit 0", "echo", "type"} 
+var built_ins := []string{"exit 0", "echo", "type"} 
 
 func main() {
     for {
