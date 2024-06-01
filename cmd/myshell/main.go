@@ -27,15 +27,15 @@ func responseHandler(incoming string) {
     cmds := strings.Split(incoming, " ")
 
     switch cmds[0]{
-    case "pwd":
+    case "pwd": // returns current working directory
         pwd, _ := os.Getwd()
         fmt.Fprint(os.Stdout, pwd+"\n")
 
-    case "echo":
+    case "echo": // prints arguments to console
         message := strings.TrimPrefix(incoming, "echo ")
         fmt.Fprint(os.Stdout, message+"\n")
 
-    case "type":
+    case "type": // prints either "is shell builtin is" or directory location of func
         check := strings.TrimPrefix(incoming, "type ")
         if slices.Contains(built_ins, check){
             fmt.Fprint(os.Stdout, check+" is a shell builtin\n")
@@ -52,14 +52,14 @@ func responseHandler(incoming string) {
             fmt.Fprint(os.Stdout, check+" not found\n")
         }
 
-    case "exit":
+    case "exit": // exit shell
         if cmds[1] == "0" {
             os.Exit(0)
         } else { 
             fmt.Fprint(os.Stdout, "Not a valid exit code\n")
         }
 
-    case "cd":
+    case "cd": // change to new directory
         pathToChange := cmds[1]
         path := parsePath(pathToChange)
         err := os.Chdir(path)
@@ -67,7 +67,7 @@ func responseHandler(incoming string) {
             fmt.Println(path + ": No such file or directory")
         }
 
-    default:
+    default: // executes other cases as function and if that fails returns err value
         command := exec.Command(cmds[0], cmds[1:]...)
 		command.Stderr = os.Stderr
         command.Stdout = os.Stdout
@@ -82,9 +82,10 @@ func parsePath(path string) string {
     // Absolute Path
 	if strings.HasPrefix(path, "/") {
 		return path
+    //TAKE ME HOME COUNTRY ROAD
 	} else if strings.HasPrefix(path, "~") {
         homedir := os.Getenv("HOME")
-        return homedir
+        return homedir // WEST VIRGINIA
     }
 	// Relative Path
 	currentPath, err := os.Getwd()
