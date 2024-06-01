@@ -62,7 +62,6 @@ func responseHandler(incoming string) {
     case "cd":
         pathToChange := cmds[1]
         path := parsePath(pathToChange)
-        
         err := os.Chdir(path)
         if err != nil {
             fmt.Println(path + ": No such file or directory")
