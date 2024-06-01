@@ -54,6 +54,9 @@ func responseHandler(incoming string) {
             fmt.Fprint(os.Stdout, check+" not found\n")
         }
 
+    case "pwd":
+        fmt.Fprint(os.Stdout, os.Getwd())
+
     default:
         command := exec.Command(cmds[0], cmds[1:]...)
 		command.Stderr = os.Stderr
