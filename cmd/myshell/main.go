@@ -66,9 +66,10 @@ func responseHandler(incoming string) {
     default:
         command := exec.Command(cmds[0], cmds[1:]...)
 		command.Stderr = os.Stderr
+        command.Stdout = os.Stdout
 		err := command.Run()
 		if err != nil {
-            fmt.Printf(os.Stdout, "%s: command not found\n", cmds[0])
+            fmt.Printf("%s: command not found\n", cmds[0])
         }
     }
 }
