@@ -6,7 +6,7 @@ import (
 	"os"
     "os/exec"
     "strings"
-    "slices/Contains"
+    "slices"
     "path/filepath"
 )
 
