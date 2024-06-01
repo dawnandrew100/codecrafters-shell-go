@@ -59,9 +59,13 @@ func responseHandler(incoming string) {
         }
 
     case "cd":
-        err := os.Chdir(cmds[1]); if err != nil {
-            fmt.Fprint(os.Stdout, cmds[1]+": No such file or directory\n")
-	}
+        pathToChange := cmds[1]
+        path := parsePath(pathToChange)
+        
+        err := os.Chdir(path)
+        if err != nil {
+            fmt.Println(path + ": No such file or directory")
+        }
 
     default:
         command := exec.Command(cmds[0], cmds[1:]...)
