@@ -26,6 +26,10 @@ func responseHandler(incoming string) {
     cmds := strings.Split(incoming, " ")
 
     switch cmds[0]{
+    case "pwd":
+        pwd, _ := os.Getwd()
+        fmt.Fprint(os.Stdout, pwd+"\n")
+
     case "exit":
         if cmds[1] == "0" {
             os.Exit(0)
@@ -53,10 +57,6 @@ func responseHandler(incoming string) {
             }
             fmt.Fprint(os.Stdout, check+" not found\n")
         }
-
-    case "pwd":
-        pwd, _ := os.Getwd()
-        fmt.Fprint(os.Stdout, pwd+"\n")
 
     default:
         command := exec.Command(cmds[0], cmds[1:]...)
