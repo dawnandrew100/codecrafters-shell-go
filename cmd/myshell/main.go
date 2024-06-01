@@ -40,7 +40,7 @@ func responseHandler(incoming string) {
         check := strings.TrimPrefix(incoming, "type ")
         if slices.Contains(built_ins, check){
             fmt.Fprint(os.Stdout, check+" is a shell builtin\n")
-        } else if {
+        } else {
             env := os.Getenv("PATH")
             paths := strings.Split(env, ":")
             for _, path := range paths {
@@ -50,7 +50,6 @@ func responseHandler(incoming string) {
                     return
                 }
             }
-        } else {
             fmt.Fprint(os.Stdout, check+" not found\n")
         }
 
