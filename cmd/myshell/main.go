@@ -44,7 +44,7 @@ func responseHandler(incoming string) {
             for _, path := range paths {
                 exec := path + "/" + check
                 if _, err := os.Stat(exec); err == nil {
-                    fmt.Fprintf(os.Stdout, "%v is %v\n", check, exec)
+                    fmt.Fprint(os.Stdout, check+" is "+exec+"\n")
                     return
                 }
             }
@@ -60,16 +60,15 @@ func responseHandler(incoming string) {
 
     case "cd":
         err := os.Chdir(cmds[1]); if err != nil {
-            fmt.Fprintf(os.Stdout, "%s: No such file or directory\n", cmds[1])
+            fmt.Fprint(os.Stdout, cmds[1]+": No such file or directory\n")
 	}
 
     default:
         command := exec.Command(cmds[0], cmds[1:]...)
 		command.Stderr = os.Stderr
-		command.Stdout = os.Stdout
 		err := command.Run()
 		if err != nil {
-            fmt.Printf("%s: command not found\n", cmds[0])
+            fmt.Fprint(os.Stdout, cmd[0]+": command not found\n")
         }
     }
 }
