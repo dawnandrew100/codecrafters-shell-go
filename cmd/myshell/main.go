@@ -60,7 +60,7 @@ func responseHandler(incoming string) {
 
     case "cd":
         err := os.Chdir(cmds[1:]); if err != nil {
-            fmt.Fprintf(os.Stdout, "%s: No such file or directory\n", command)
+            fmt.Fprintf(os.Stdout, "%s: No such file or directory\n", cmds[1:])
 	}
 
     default:
