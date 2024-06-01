@@ -80,10 +80,14 @@ func responseHandler(incoming string) {
 }
 
 func parsePath(path string) string {
+    // Absolute Path
 	if strings.HasPrefix(path, "/") {
 		return path
-	}
-	//It is a relative path
+	} else if strings.HasPrefix(path, "~") {
+        homedir := os.Getenv("HOME")
+        return homedir
+    }
+	// Relative Path
 	currentPath, err := os.Getwd()
 	if err != nil {
 		fmt.Println(err)
