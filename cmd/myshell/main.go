@@ -30,13 +30,6 @@ func responseHandler(incoming string) {
         pwd, _ := os.Getwd()
         fmt.Fprint(os.Stdout, pwd+"\n")
 
-    case "exit":
-        if cmds[1] == "0" {
-            os.Exit(0)
-        } else { 
-            fmt.Fprint(os.Stdout, "Not a valid exit code\n")
-        }
-
     case "echo":
         message := strings.TrimPrefix(incoming, "echo ")
         fmt.Fprint(os.Stdout, message+"\n")
@@ -57,6 +50,18 @@ func responseHandler(incoming string) {
             }
             fmt.Fprint(os.Stdout, check+" not found\n")
         }
+
+    case "exit":
+        if cmds[1] == "0" {
+            os.Exit(0)
+        } else { 
+            fmt.Fprint(os.Stdout, "Not a valid exit code\n")
+        }
+
+    case "cd":
+        err := os.Chdir(cmds[1:]); if err != nil {
+            fmt.Fprintf(os.Stdout, "%s: No such file or directory\n", command)
+	}
 
     default:
         command := exec.Command(cmds[0], cmds[1:]...)
