@@ -7,6 +7,7 @@ import (
     "os/exec"
     "strings"
     "slices"
+    "path/filepath"
 )
 
 var built_ins = []string{"exit", "echo", "type"} 
@@ -76,4 +77,16 @@ func responseHandler(incoming string) {
             fmt.Fprint(os.Stdout, cmds[0]+": command not found\n")
         }
     }
+}
+
+func parsePath(path string) string {
+	if strings.HasPrefix(path, "/") {
+		return path
+	}
+	//It is a relative path
+	currentPath, err := os.Getwd()
+	if err != nil {
+		log.Println(err)
+	}
+	return filepath.Join(currentPath, path)
 }
