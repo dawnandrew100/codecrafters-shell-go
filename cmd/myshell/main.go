@@ -55,7 +55,8 @@ func responseHandler(incoming string) {
         }
 
     case "pwd":
-        fmt.Fprint(os.Stdout, os.Getwd())
+        pwd, _ := os.Getwd()
+        fmt.Fprint(os.Stdout, pwd+"\n")
 
     default:
         command := exec.Command(cmds[0], cmds[1:]...)
