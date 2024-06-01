@@ -40,6 +40,16 @@ func responseHandler(incoming string) {
         check := strings.TrimPrefix(incoming, "type ")
         if slices.Contains(built_ins, check){
             fmt.Fprint(os.Stdout, check+" is a shell builtin\n")
+        } else if {
+            env := os.Getenv("PATH")
+            paths := strings.Split(env, ":")
+            for _, path := range paths {
+                exec := path + "/" + item
+                if _, err := os.Stat(exec); err == nil {
+                    fmt.Fprintf(os.Stdout, "%v is %v\n", item, exec)
+                    return
+                }
+            }
         } else {
             fmt.Fprint(os.Stdout, check+" not found\n")
         }
