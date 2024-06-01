@@ -44,9 +44,9 @@ func responseHandler(incoming string) {
             env := os.Getenv("PATH")
             paths := strings.Split(env, ":")
             for _, path := range paths {
-                exec := path + "/" + item
+                exec := path + "/" + check
                 if _, err := os.Stat(exec); err == nil {
-                    fmt.Fprintf(os.Stdout, "%v is %v\n", item, exec)
+                    fmt.Fprintf(os.Stdout, "%v is %v\n", check, exec)
                     return
                 }
             }
