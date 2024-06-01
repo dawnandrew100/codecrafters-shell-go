@@ -4,6 +4,7 @@ import (
 	"bufio"
 	"fmt"
 	"os"
+    "os/exec"
     "strings"
     "slices"
 )
@@ -54,6 +55,12 @@ func responseHandler(incoming string) {
         }
 
     default:
-        fmt.Fprint(os.Stdout, incoming +": command not found\n")
+        command := exec.Command(cmds[0], cmds[1:]...)
+		command.Stderr = os.Stderr
+		command.Stdout = os.Stdout
+		err := command.Run()
+		if err != nil {
+            fmt.Printf("%s: command not found\n", cmds[0])
+        }
     }
 }
