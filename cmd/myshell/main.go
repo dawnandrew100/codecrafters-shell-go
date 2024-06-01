@@ -86,7 +86,7 @@ func parsePath(path string) string {
 	//It is a relative path
 	currentPath, err := os.Getwd()
 	if err != nil {
-		log.Println(err)
+		fmt.Println(err)
 	}
 	return filepath.Join(currentPath, path)
 }
